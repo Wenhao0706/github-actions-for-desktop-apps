@@ -47,10 +47,10 @@ jobs:
       id: nbgv
 
     # Install the .NET Core workload
-    - name: Install .NET Core
+    - name: Install .NET Core 3.1
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: '3.1.x'
 
     # Add  MsBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
@@ -99,5 +99,5 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: MSIX Package
+        name: msix-${{ matrix.targetplatform }}-${{ github.run_number }}-${{ github.run_attempt }}
         path: ${{ env.Wap_Project_Directory }}\${{ env.App_Packages_Directory }}
